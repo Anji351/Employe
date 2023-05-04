@@ -1,0 +1,27 @@
+mat-toolbar button{
+    margin:5px
+  }
+  .mat-elevation-z8{
+    width: 90%;
+    margin-left: 70px;
+  }
+  .example-spacer {
+      flex: 1 1 auto;
+    }
+    .hide{
+      display: none;
+    }
+    mat-footer-row mat-footer-cell{
+      justify-content: center;
+      font-style: italic;
+    }
+    #ne{
+      background-color: blue;
+    }
+    /* sidenav */
+    .example-container{
+      width: 200px;
+      height: 1000px;
+      margin: 10px;
+      border: 1px solid #555;
+    }

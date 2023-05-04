@@ -1,0 +1,59 @@
+<form [formGroup]="empForm">
+    <mat-grid-list cols="2" rowHeight="400px">
+        <mat-grid-tile>
+            <div class="empControls">
+                <mat-form-field appearance="outline">
+                    <mat-label>Empcode</mat-label>
+                    <input matInput type="text" placeholder="Empcode" formControlName="Empcode" required>
+                    <mat-error *ngIf="f['Empcode'].errors?.['minlength']">minimum should be 5 characters</mat-error>
+                    <mat-error *ngIf="f['Empcode'].errors?.['pattern']">characters are not allowed</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>EmpName</mat-label>
+                    <input matInput type="EmpName" placeholder="EmpName" formControlName="EmpName" required>
+                    <mat-error *ngIf="f['EmpName'].errors?.['pattern']">only alphabets are allowed</mat-error>
+                </mat-form-field>
+
+                 <mat-form-field appearance="outline" class="w-100">
+                    <mat-date-range-input [rangePicker]="picker" >
+                      <input matStartDate placeholder="Date of Birth" formControlName="Date of Birth" [min]="minDate" 
+                       [max]="maxDate">
+                      <input matEndDate placeholder="Date of Joining" formControlName="Date of Joining" [min]="minDate" 
+                       [max]="maxDate">
+                       <mat-error *ngIf="f['EmpName'].errors?.['pattern']">age must be 21 years</mat-error>
+                       <mat-error *ngIf="f['EmpName'].errors?.['pattern']">DOB must be less than DOJ</mat-error>
+                    </mat-date-range-input>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-date-range-picker #picker></mat-date-range-picker>
+                </mat-form-field>
+            </div>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+            <div class="empControls">
+                <mat-form-field appearance="outline">
+                    <mat-label>Qualification</mat-label>
+                    <mat-select formControlName="Qualification" required>
+                        <mat-option>None</mat-option>
+                        <ng-container *ngFor="let q of Qualification">
+                            <mat-option value="{{q}}">{{q}}</mat-option>
+                        </ng-container>
+                    </mat-select>
+                    <mat-error *ngIf="f['Qualification'].errors?.['required']">Qualification is required</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>ManagerCode</mat-label>
+                    <input matInput type="text" placeholder="ManagerCode" formControlName="ManagerCode" required>
+                    <mat-error *ngIf="f['ManagerCode'].errors?.['minlength']">minimum should be 5 characters</mat-error>
+                </mat-form-field>
+
+                <div class="buttonRow">
+                    <button mat-raised-button color="warn" mat-dialog-close>close</button>
+                    <button mat-raised-button color="primary" (click)="addEmp()">{{actionButton}}</button>
+                </div>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+</form>
